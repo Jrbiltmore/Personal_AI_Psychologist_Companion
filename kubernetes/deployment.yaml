@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-companion
+  labels:
+    app: ai-companion
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ai-companion
+  template:
+    metadata:
+      labels:
+        app: ai-companion
+    spec:
+      containers:
+        - name: ai-companion
+          image: your-docker-repo/ai-companion:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DART_ENV
+              value: "production"

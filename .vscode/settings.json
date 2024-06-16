@@ -1,0 +1,14 @@
+
+{
+  "dart.flutterSdkPath": "path/to/flutter",
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  },
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000
+}

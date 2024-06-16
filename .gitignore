@@ -1,0 +1,9 @@
+
+/build/
+/.DS_Store
+/.idea
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache
+.dart_tool
