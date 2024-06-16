@@ -13,7 +13,8 @@ if (-not (Test-Path -Path ".git")) {
     git init
     git checkout -b main
     Write-Host "Initialized a new Git repository."
-} else {
+}
+else {
     git checkout main
 }
 
@@ -28,7 +29,7 @@ Write-Host "Committed the changes with message: '$commitMessage'."
 
 # Add the remote repository if it does not exist
 $remoteUrl = "git@github.com:Jrbiltmore/Personal_AI_Psychologist_Companion.git"
-$remoteName = "origin"
+$remoteName = "github"
 if (-not (git remote | Select-String -Pattern $remoteName)) {
     git remote add origin $remoteUrl
     Write-Host "Added remote repository '$remoteName'."
