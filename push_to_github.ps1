@@ -10,8 +10,11 @@ Set-Location -Path $projectDir
 
 # Initialize a Git repository if it does not exist
 if (-not (Test-Path -Path ".git")) {
-    git init -b main
+    git init
+    git checkout -b main
     Write-Host "Initialized a new Git repository."
+} else {
+    git checkout main
 }
 
 # Add all files to the Git repository
@@ -23,19 +26,14 @@ $commitMessage = "Initial commit"
 git commit -m $commitMessage
 Write-Host "Committed the changes with message: '$commitMessage'."
 
-# Add the remote repository
+# Add the remote repository if it does not exist
 $remoteUrl = "git@github.com:Jrbiltmore/Personal_AI_Psychologist_Companion.git"
-git remote add origin $remoteUrl
+$remoteName = "origin"
+if (-not (git remote | Select-String -Pattern $remoteName)) {
+    git remote add origin $remoteUrl
+    Write-Host "Added remote repository '$remoteName'."
+}
 
 # Push the changes to the remote repository
 git push -u origin main
 Write-Host "Pushed the changes to GitHub."
-
-# Open the project in VS Code if the `code` command is available
-if (Get-Command code -ErrorAction SilentlyContinue) {
-    code .
-    Write-Host "Opened the project in VS Code."
-}
-else {
-    Write-Host "VS Code command-line tools are not installed or not added to the PATH."
-}
