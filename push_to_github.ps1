@@ -5,12 +5,12 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
 }
 
 # Navigate to the project directory
-$projectDir = "ai_companion"
+$projectDir = "C:\Users\Shrew\Downloads\ai_companion_project_final"
 Set-Location -Path $projectDir
 
 # Initialize a Git repository if it does not exist
 if (-not (Test-Path -Path ".git")) {
-    git init
+    git init -b main
     Write-Host "Initialized a new Git repository."
 }
 
@@ -24,13 +24,18 @@ git commit -m $commitMessage
 Write-Host "Committed the changes with message: '$commitMessage'."
 
 # Add the remote repository
-$remoteUrl = "https://github.com/jrbiltmore/Personal_AI_Psychologist_Companion.git"
+$remoteUrl = "git@github.com:Jrbiltmore/Personal_AI_Psychologist_Companion.git"
 git remote add origin $remoteUrl
 
 # Push the changes to the remote repository
 git push -u origin main
 Write-Host "Pushed the changes to GitHub."
 
-# Open the project in VS Code
-code .
-Write-Host "Opened the project in VS Code."
+# Open the project in VS Code if the `code` command is available
+if (Get-Command code -ErrorAction SilentlyContinue) {
+    code .
+    Write-Host "Opened the project in VS Code."
+}
+else {
+    Write-Host "VS Code command-line tools are not installed or not added to the PATH."
+}
